@@ -8,7 +8,7 @@
     <title>图书管理系统</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -22,7 +22,7 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">首页</a></li>
-					<li><a href="#about">新书上架</a></li>
+					<li><a href="fresh">新书上架</a></li>
 					<li><a href="#about">图书查询</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
@@ -33,8 +33,34 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-					<li><a href="#">登陆</a></li>
-					<li><a href="#">注册</a></li>
+					<?php 
+					   if ($userName)
+					   {
+					       echo    "<li class='dropdown'>
+                                        <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+                                            $userName
+                                            <span class='caret'></span>
+                                        </a>
+                                        <ul class='dropdown-menu' role='menu'>
+									       <li class='dropdown-header'>用户控制</li>
+									       <li><a href='#'>个人信息</a></li>
+									       <li><a href='#'>借阅记录</a></li>
+									       <li><a href='#'>账户安全</a></li>
+									       <li class='divider'></li>
+									       <li><a href='#'>安全退出</a></li>
+								        </ul>
+                                    </li>";
+					       if ($userType == 2)
+					       {
+					           echo    "<li><a href='#'>管理系统入口</a></li>";
+					       }
+					   }
+					   else
+					   {
+					       echo    "<li><a href='login'>登陆</a></li>
+					                <li><a href='#'>注册</a></li>";
+					   }
+					?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
