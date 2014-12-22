@@ -23,3 +23,12 @@ create table book(
 	stock int,
 	borrow int
 )Type=InnoDB DEFAULT CHARSET=utf8;
+
+create table borrow(
+	serial Bigint primary key,
+	bid int,
+	uid int,
+	borrowtime datetime,
+	returntime datetime,
+	state int
+)Type=InnoDB DEFAULT CHARSET=utf8;

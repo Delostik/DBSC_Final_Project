@@ -56,6 +56,13 @@
                     }
                 ?>
             </div>
+            <br />
+            <div class="list-group">
+                <a class='list-group-item active' href='<?=base_url()?>admin/addAdmin'>添加管理员</a>
+            </div>
+            <div class="list-group">
+                <a class='list-group-item active' href='<?=base_url()?>admin/addUser'>添加新用户</a>
+            </div>
         </div>
     </div>
 </div>

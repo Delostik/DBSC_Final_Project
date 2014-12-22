@@ -56,4 +56,13 @@ class Admin extends CI_Controller {
         $this->load->view('admin/footer');
     }
     
+    public function record($bid = 0) 
+    {
+        $data = $this->data;
+        $data['record'] = $this->book_model->getRecordByBookId($bid);
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/record_page');
+        $this->load->view('admin/footer');
+    }
+    
 }

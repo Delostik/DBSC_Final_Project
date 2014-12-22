@@ -1,0 +1,21 @@
+.minh {
+	min-height: 500px;
+}
+
+#addPanel {
+	width: 600px;
+	height: 320px;
+	background: #ddd;
+	border-radius: 5px;
+	position: fixed;
+	z-index: 2000;
+	left: 50%;
+	top: 40%;
+	margin-top: -150px;
+	margin-left: -300px;
+	display: none;
+}
+
+.td-red {color: red;font-weight: bold;}
+.td-gray{color: #9d9d9d;font-weight: bold;}
+.td-green{color: #1c9d52;font-weight: bold;}

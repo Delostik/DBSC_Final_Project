@@ -4,7 +4,7 @@
     <script type="text/javascript" src="<?=base_url()?>js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="<?=base_url()?>js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="<?=base_url()?>css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="<?=base_url()?>css/pages.css" />
+    <link type="text/css" rel="stylesheet" href="<?=base_url()?>css/admin.css" />
     <title>图书管理系统</title>
 </head>
 <body>
