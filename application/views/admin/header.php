@@ -41,7 +41,7 @@
 									       <li><a href='#'>借阅记录</a></li>
 									       <li><a href='#'>账户安全</a></li>
 									       <li class='divider'></li>
-									       <li><a href='user/do_logout'>安全退出</a></li>
+									       <li><a href='". base_url(). "user/do_logout'>安全退出</a></li>
 								        </ul>
                                     </li>";
 					       echo    "<li><a href='". base_url(). "'>返回系统首页</a></li>";

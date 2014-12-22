@@ -5,15 +5,26 @@
     
     $(document).ready(function() {
         $("#btn_addBook").css('cursor', 'pointer');
+        $("#btn_addCategory").css('cursor', 'pointer');
         $("#btn_addBook").click(function() {
-            $("#addPanel").toggle(200);
+            $("#addBookPanel").toggle(200);
+            $("#addCategoryPanel").hide(200);
             event.stopPropagation();
         });
-        $("#addPanel").click(function(event) {
+        $("#btn_addCategory").click(function() {
+            $("#addCategoryPanel").toggle(200);
+            $("#addBookPanel").hide(200);
+            event.stopPropagation();
+        });
+        $("#addBookPanel").click(function(event) {
+            event.stopPropagation();
+        });
+        $("#addCategoryPanel").click(function(event) {
             event.stopPropagation();
         });
         $("body").click(function() {
-        	$("#addPanel").hide(200);
+        	$("#addBookPanel").hide(200);
+        	$("#addCategoryPanel").hide(200);
         });
     });
 </script>
@@ -59,9 +70,6 @@
         </div>
         <div class="col-md-3 col-md-pull-9">
             <div class="list-group">
-                <li class='list-group-item active' id="btn_addBook">添加图书</li>
-            </div>
-            <div class="list-group">
                 <?php 
                     if ($category)
                     {
@@ -84,8 +92,18 @@
                     }
                 ?>
             </div>
+            <br />
+            <div class="list-group">
+                <li class='list-group-item active' id="btn_addBook">添加图书</li>
+            </div>
+            <div class="list-group">
+                <li class='list-group-item active' id="btn_addCategory">添加类别</li>
+            </div>
+            
         </div>
     </div>
 </div>
-<div id="addPanel">
+<div id="addBookPanel">
+</div>
+<div id="addCategoryPanel">
 </div>

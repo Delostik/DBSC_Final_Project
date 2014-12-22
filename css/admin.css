@@ -2,7 +2,21 @@
 	min-height: 500px;
 }
 
-#addPanel {
+#addBookPanel {
+	width: 600px;
+	height: 320px;
+	background: #ddd;
+	border-radius: 5px;
+	position: fixed;
+	z-index: 2000;
+	left: 50%;
+	top: 40%;
+	margin-top: -150px;
+	margin-left: -300px;
+	display: none;
+}
+
+#addCategoryPanel {
 	width: 600px;
 	height: 320px;
 	background: #ddd;
