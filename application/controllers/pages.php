@@ -11,6 +11,7 @@ class Pages extends CI_Controller {
         parent::__construct();
         $this->load->model(array('user_model'));
         $this->load->library(array('session'));
+        $this->load->helper(array('url'));
         
         $this->uid = $this->session->userdata('uid');
         if ($this->uid) {

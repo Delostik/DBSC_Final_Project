@@ -7,6 +7,7 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->model(array('user_model'));
         $this->load->library(array('session'));
+        $this->load->helper(array('url'));
     }
     
     public function do_login()

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="css/pages.css" />
+    <script type="text/javascript" src="<?=base_url()?>js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="<?=base_url()?>css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="<?=base_url()?>css/pages.css" />
     <title>图书管理系统</title>
 </head>
 <body>
@@ -21,9 +21,9 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li<?php echo ($page == 'index')? " class='active'": "";?>><a href="./">首页</a></li>
-					<li<?php echo ($page == 'fresh')? " class='active'": "";?>><a href="fresh">新书上架</a></li>
-					<li<?php echo ($page == 'serch')? " class='active'": "";?>><a href="#about">图书查询</a></li>
+					<li<?php echo ($page == 'index')? " class='active'": "";?>><a href="<?=base_url()?>">首页</a></li>
+					<li<?php echo ($page == 'fresh')? " class='active'": "";?>><a href="<?=base_url()?>fresh">新书上架</a></li>
+					<li<?php echo ($page == 'serch')? " class='active'": "";?>><a href="<?=base_url()?>search">图书查询</a></li>
 					<li<?php echo ($page == '#')? " class='active'": "";?>><a href="#contact">Contact</a></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
