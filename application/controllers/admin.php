@@ -7,16 +7,22 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->model(array('user_model'));
         $this->load->library(array('session'));
+        
+        $this->uid = $this->session->userdata('uid');
+        if ($this->uid) {
+            $this->userInfo = $this->user_model->getUserInfoById($this->uid);
+        }
+        $this->data = array(
+            'userName'  => isset($this->userInfo['userName'])?  $this->userInfo['userName'] : '',
+            'uid'       => isset($this->userInfo['uid'])?       $this->userInfo['uid']      : 0,
+            'userType'  => isset($this->userInfo['userType'])?  $this->userInfo['userType'] : 0,
+            'page'      => ''
+        );
     }
     
     public function check_privilege()
     {
-        if (!$this->session->userdata('uid'))
-        {
-            header('Location:./');
-        }
-        $userInfo = $this->user_model->getUserInfoById($this->session->userdata('uid'));
-        if (!$userInfo || $userInfo['userType'] != 2)
+        if (!$this->data['uid'])
         {
             header('Location:./');
         }
@@ -26,7 +32,7 @@ class Admin extends CI_Controller {
     {
         $this->check_privilege();
         
-        
+        $this->load->view('admin/header', $this->data);
     }
     
 }

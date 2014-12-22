@@ -17,8 +17,8 @@ class Pages extends CI_Controller {
             $this->userInfo = $this->user_model->getUserInfoById($this->uid);
         }
         $this->data = array(
-            'userName'  => isset($this->userInfo['userName'])?  $this->userInfo['userName'] : 0,
-            'uid'       => isset($this->userInfo['uid'])?       $this->userInfo['uid']      : 'aaa',
+            'userName'  => isset($this->userInfo['userName'])?  $this->userInfo['userName'] : '',
+            'uid'       => isset($this->userInfo['uid'])?       $this->userInfo['uid']      : 0,
             'userType'  => isset($this->userInfo['userType'])?  $this->userInfo['userType'] : 0,
             'page'      => ''
         );
