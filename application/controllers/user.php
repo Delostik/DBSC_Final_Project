@@ -42,7 +42,8 @@ class User extends CI_Controller {
         $data = array(
             'uid'       =>  $this->getUid(),
             'userName'  =>  $userName,
-            'password'  =>  sha1($password)
+            'password'  =>  sha1($password),
+            'userType'  =>  1
         );
         $this->db->insert('user', $data);
         header('Location:../');

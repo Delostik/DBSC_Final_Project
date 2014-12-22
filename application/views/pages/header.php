@@ -52,7 +52,7 @@
                                     </li>";
 					       if ($userType == 2)
 					       {
-					           echo    "<li><a href='#'>管理系统入口</a></li>";
+					           echo    "<li><a href='admin'>管理系统入口</a></li>";
 					       }
 					   }
 					   else

@@ -44,9 +44,6 @@ $route['user/(:any)'] = 'user/$1';
 $route['admin'] = 'admin/index';
 $route['admin/(:any)'] = 'admin/$1';
 
-$route['admin'] = 'user/index';
-$route['admin/(:any)'] = 'user/$1';
-
 $route['(:any)'] = 'pages/$1';
 $route['default_controller'] = "pages/index";
 
