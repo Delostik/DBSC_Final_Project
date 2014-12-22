@@ -6,7 +6,7 @@
 			<p class="lead">　　我们只是想拿一个好看一点的分数我们只是想拿一个好看一点的分数我们只是想拿一个好看一点的分数我们只是想拿一个好看一点的分数我们只是想拿一个好看一点的分数</p>
 		</div>
 		<div class="col-md-5">
-            <form action="user/do_login" method="post">
+            <form action="user/do_register" method="post">
                 <style>
                     .form-control {
                         max-width: 280px;
@@ -26,12 +26,14 @@
                     <input type="password" class="form-control" placeholder="password" name="password">
                 </div>
                 <br />
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="password" class="form-control" placeholder="password confirm" name="password_confirm">
+                </div>
+                <br />
                 <div class="btn-group btn-group-justified">
                     <div class="btn-group">
-                        <button type="button submit" class="btn btn-default">登陆</button>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default">忘记密码</button>
+                        <button type="button submit" class="btn btn-default">注册</button>
                     </div>
                 </div>
 			</form>

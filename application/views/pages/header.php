@@ -21,10 +21,10 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">首页</a></li>
-					<li><a href="fresh">新书上架</a></li>
-					<li><a href="#about">图书查询</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li<?php echo ($page == 'index')? " class='active'": "";?>><a href="./">首页</a></li>
+					<li<?php echo ($page == 'fresh')? " class='active'": "";?>><a href="fresh">新书上架</a></li>
+					<li<?php echo ($page == 'serch')? " class='active'": "";?>><a href="#about">图书查询</a></li>
+					<li<?php echo ($page == '#')? " class='active'": "";?>><a href="#contact">Contact</a></li>
 				</ul>
 				<form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -47,7 +47,7 @@
 									       <li><a href='#'>借阅记录</a></li>
 									       <li><a href='#'>账户安全</a></li>
 									       <li class='divider'></li>
-									       <li><a href='#'>安全退出</a></li>
+									       <li><a href='user/do_logout'>安全退出</a></li>
 								        </ul>
                                     </li>";
 					       if ($userType == 2)
@@ -58,7 +58,7 @@
 					   else
 					   {
 					       echo    "<li><a href='login'>登陆</a></li>
-					                <li><a href='#'>注册</a></li>";
+					                <li><a href='register'>注册</a></li>";
 					   }
 					?>
 				</ul>

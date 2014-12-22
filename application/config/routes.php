@@ -38,6 +38,8 @@
 |
 */
 
+$route['user'] = 'user/index';
+$route['user/(:any)'] = 'user/$1';
 
 $route['admin'] = 'admin/index';
 $route['admin/(:any)'] = 'admin/$1';
