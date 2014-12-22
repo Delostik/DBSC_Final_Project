@@ -32,22 +32,28 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header', $this->data);
     }
     
-    public function bookManage()
+    public function bookManage($cid = 0)
     {
         $data = $this->data;
         $data['page'] = 'bookManage';
         $data['category'] = $this->book_model->getCategoryList();
-        
+        $data['books']    = $this->book_model->getBookListByCategoryId($cid);
+        $data['pageCid']  = $cid;
         $this->load->view('admin/header', $data);
         $this->load->view('admin/bookManage_page');
         $this->load->view('admin/footer');
     }
     
-    public function userManage()
+    public function userManage($userType = 0)
     {
-        $this->data['page'] = 'userManage';
-        
-        $this->load->view('admin/header', $this->data);
+        $data = $this->data;
+        $data['page'] = 'userManage';
+        $data['typeList'] = $this->user_model->getUserTypeList();
+        $data['users']    = $this->user_model->getUserListByType($userType);
+        $data['pageType']  = $userType;
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/userManage_page');
+        $this->load->view('admin/footer');
     }
     
 }

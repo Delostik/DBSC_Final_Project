@@ -13,25 +13,18 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th width=50px>#</th>
-                            <th width=350px>书名</th>
-                            <th width=80px>单价</th>
-                            <th width=70px>库存</th>
-                            <th width=80px>借阅次数</th>
-                            <th>借阅记录</th>
+                            <th>uid</th>
+                            <th>用户名</th>
                         </tr>
                     </thead>
                     <?php 
-                        if ($books)
+                        if ($users)
                         {
                             $cnt = 0;
-                            foreach ($books as $row)
+                            foreach ($users as $row)
                             {
-                                echo "<tr><td>". ++$cnt. "</td>
-                                          <td>". $row['name']. "</td>
-                                          <td>". $row['price']. "</td>
-                                          <td>". $row['stock']. "</td>
-                                          <td>". $row['borrow']. "</td>
+                                echo "<tr><td>". $row['uid']. "</td>
+                                          <td>". $row['userName']. "</td>
                                       </tr>";
                             }    
                         }
@@ -42,11 +35,11 @@
         <div class="col-md-3 col-md-pull-9">
             <div class="list-group">
                 <?php 
-                    if ($category)
+                    if ($typeList)
                     {
-                        foreach ($category as $row)
+                        foreach ($typeList as $row)
                         {
-                            if ($pageCid == $row['cid'])
+                            if ($pageType == $row['tid'])
                             {
                                 $html = "<a class='list-group-item active' ";
                             }
@@ -54,7 +47,7 @@
                             {
                                 $html = "<a class='list-group-item' ";
                             }
-                            $html .= "href='". base_url(). "admin/bookManage/". $row['cid']. "'>
+                            $html .= "href='". base_url(). "admin/userManage/". $row['tid']. "'>
                                         <span class='badge'>". $row['num']. "</span>".
                                             $row['name'].
                                     "</a>";

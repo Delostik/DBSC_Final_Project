@@ -36,4 +36,47 @@ class User_model extends CI_Model {
         }
     }
     
+    public function getUserNumberByType($userType)
+    {
+        if ($userType)
+        {
+            $query = $this->db->from('user')->where('userType', $userType)->get();
+        }
+        else
+        {
+            $query = $this->db->from('user')->get();
+        }
+        return $query->num_rows;
+    }
+    
+    public function getUserTypeList()
+    {
+        $data = array(
+            0 => array('tid' => 0, 'name' => '全部', 'num' => $this->getUserNumberByType(0)),
+            1 => array('tid' => 1, 'name' => '注册用户', 'num' => $this->getUserNumberByType(1)),
+            2 => array('tid' => 2, 'name' => '管理用户', 'num' => $this->getUserNumberByType(2))
+        );
+        return $data;
+    }
+    
+    public function getUserListByType($userType)
+    {
+        if ($userType)
+        {
+            $query = $this->db->from('user')->where('userType', $userType)->get();
+        }
+        else
+        {
+            $query = $this->db->from('user')->get();
+        }
+        if ($query->num_rows)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
 }

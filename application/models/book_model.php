@@ -29,15 +29,32 @@ class Book_model extends CI_Model {
     
     public function getBookNumberByCategoryId($cid)
     {
-        $this->db->from('book');
         if ($cid)
         {
-            $query = $this->db->where('cid', $cid)->get();
+            $query = $this->db->from('book')->where('cid', $cid)->get();
         }
         else {
-            $query = $this->db->get();
+            $query = $this->db->from('book')->get();
         }
         return $query->num_rows;
     }
     
+    public function getBookListByCategoryId($cid)
+    {
+        if ($cid)
+        {
+            $query = $this->db->from('book')->where('cid', $cid)->get();
+        }
+        else {
+            $query = $this->db->from('book')->get();
+        }
+        if ($query->num_rows)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
