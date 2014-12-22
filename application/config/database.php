@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = '121.41.62.10';
 $db['default']['username'] = 'DBSC';
-$db['default']['password'] = 'db2014';
+$db['default']['password'] = '';
 $db['default']['database'] = 'DBSC';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

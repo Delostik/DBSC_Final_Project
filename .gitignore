@@ -43,4 +43,4 @@ Temporary Items
 .apdisk
 
 
-database.php
+application/config/database.php
