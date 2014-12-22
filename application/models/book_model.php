@@ -100,4 +100,10 @@ class Book_model extends CI_Model {
             return null;
         }
     }
+    
+    public function getFreshBook($num)
+    {
+        $query = $this->db->from('book')->order_by('bid', 'DESC')->limit($num)->get();
+        return $query->result_array();
+    }
 }

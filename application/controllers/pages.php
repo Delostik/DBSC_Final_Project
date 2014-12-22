@@ -9,7 +9,7 @@ class Pages extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('user_model'));
+        $this->load->model(array('user_model', 'book_model'));
         $this->load->library(array('session'));
         $this->load->helper(array('url'));
         
@@ -36,9 +36,12 @@ class Pages extends CI_Controller {
     
     public function fresh()
     {
-        $this->data['page'] = 'fresh';
+        $data = $this->data;
+        $data['page'] = 'fresh';
         
-        $this->load->view('pages/header', $this->data);
+        $data['newBook'] = $this->book_model->getFreshBook(20);
+        
+        $this->load->view('pages/header', $data);
         $this->load->view('pages/fresh');
         $this->load->view('pages/footer');
     }

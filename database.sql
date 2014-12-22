@@ -21,7 +21,8 @@ create table book(
 	ISBN char(20),
 	price float,
 	stock int,
-	borrow int
+	borrow int,
+	pic char(50)
 )Type=InnoDB DEFAULT CHARSET=utf8;
 
 create table borrow(
