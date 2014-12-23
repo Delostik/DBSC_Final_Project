@@ -28,32 +28,19 @@ class User extends CI_Controller {
         }
     }
     
-    public function getUid()
-    {
-        $result = $this->db->from('user')->order_by("uid DESC")->limit(1,0)->get()->result_array();
-        if (!$result) return 1;
-        return $result[0]['uid'] + 1;
-    }
-    
     public function do_register()
     {
         $userName = $this->input->post('userName');
         $password = $this->input->post('password');
         
-        $data = array(
-            'uid'       =>  $this->getUid(),
-            'userName'  =>  $userName,
-            'password'  =>  sha1($password),
-            'userType'  =>  1
-        );
-        $this->db->insert('user', $data);
-        header('Location:../');
+        $this->user_model->register($userName, $password);
+        header('Location:'. base_url(). "login");
     }
     
     public function do_logout()
     {
         $this->session->unset_userdata('uid');
-        header('Location:../');
+        header('Location:'. base_url());
     }
     
 }
