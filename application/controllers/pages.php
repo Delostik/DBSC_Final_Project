@@ -97,18 +97,48 @@ class Pages extends CI_Controller {
                                     <div class='book-info-detail-line'>借阅：". $row['borrow']. "次</div>
                                     <div class='book-info-detail-line'>评分</div>
                                     <div class='book-borrow'>";
-            if ($row['stock'])
+            if (!$this->userInfo)
             {
-                echo                "<button type='button' class='btn btn-primary'><strong>　借阅　</strong></button>";
+                echo                    "<button type='button' class='btn btn-info'><strong>请先登录</strong></button>";
             }
             else
             {
-                echo                "<button type='button' class='btn btn-danger'><strong>可借日期</strong></button>";
+                if ($row['stock'])
+                {
+                    echo                "<a href='". base_url(). "confirm/". $row['bid']. "'><button type='button' class='btn btn-primary'><strong>　借阅　</strong></button></a>";
+                }
+                else
+                {
+                    echo                "<button type='button' class='btn btn-danger'><strong>可借日期</strong></button>";
+                }
             }
             echo                "</div>
                         </div>
                     </div>";
         }
+    }
+    
+    public function confirm($bid = 0)
+    {
+        if (!$this->uid || !$this->book_model->exist($bid)) 
+        {
+            header('Location:'. base_url());
+        }
+        $data = $this->data;
+        $data['book'] = $this->book_model->getBookInfoById($bid);
+        $this->load->view('pages/header', $data);
+        $this->load->view('pages/confirm');
+        $this->load->view('pages/footer');
+    }
+    
+    public function do_borrow($bid)
+    {
+        if (!$this->uid || !$this->book_model->exist($bid))
+        {
+            header('Location:'. base_url());
+        }
+        $res = $this->book_model->borrow($this->uid, $bid);
+        echo $res == 1;
     }
     
 }

@@ -19,7 +19,7 @@ class Admin extends CI_Controller {
             'userType'  => isset($this->userInfo['userType'])?  $this->userInfo['userType'] : 0,
             'page'      => ''
         );
-        if (!$this->data['uid'])
+        if (!$this->data['uid'] || $this->data['userType'] != 2)
         {
             header('Location:./');
         }

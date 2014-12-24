@@ -18,17 +18,23 @@
                                         <div class='book-info-detail-line'>借阅：". $row['borrow']. "次</div>
                                         <div class='book-info-detail-line'>评分</div>
                                         <div class='book-borrow'>";
-                if ($row['stock'])
+                if (!$userName)
                 {
-                    echo                "<button type='button' class='btn btn-primary'><strong>　借阅　</strong></button>";
+                    echo                    "<button type='button' class='btn btn-info'><strong>请先登录</strong></button>";
                 }
-                else
-                {
-                    echo                "<button type='button' class='btn btn-danger'><strong>可借日期</strong></button>";
+                else {
+                    if ($row['stock'])
+                    {
+                        echo                "<a href='". base_url(). "confirm/". $row['bid']. "'><button type='button' class='btn btn-primary'><strong>　借阅　</strong></button></a>";
+                    }
+                    else
+                    {
+                        echo                "<button type='button' class='btn btn-danger'><strong>可借日期</strong></button>";
+                    }
                 }
                 echo                "</div>
-                            </div>
-                        </div>";
+                                </div>
+                            </div>";
             }
         }
     ?>

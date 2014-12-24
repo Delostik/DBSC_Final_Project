@@ -20,10 +20,12 @@
             }
         </style>
         <div class="input-group">
-            <input type="text" class="form-control" id="keyword">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="search_btn">　　Go!　　</button>
-            </span>
+            <form>
+                <input type="text" class="form-control" id="keyword">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="search_btn">　　Go!　　</button>
+                </span>
+            </form>
         </div>
     </form>
     <hr />

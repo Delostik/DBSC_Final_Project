@@ -162,4 +162,35 @@ class Book_model extends CI_Model {
         return $newArr;
     }
     
+    public function exist($bid)
+    {
+        $query = $this->db->from('book')->where('bid', $bid)->get()->num_rows;
+        return $query == 1;
+    }
+
+    public function borrow($uid, $bid)
+    {
+        $serial = $this->db->from('borrow')->limit(1, 0)->order_by('serial', 'DESC')->get();
+        if (!$serial) $serial = 1;
+        else 
+        {
+            $serial = $serial->result_array(); 
+            $serial = $serial[0]['serial'] + 1;
+        }
+        $data = array(
+            'serial'     => $serial,
+            'bid'        => $bid,
+            'uid'        => $uid,
+            'borrowtime' => date('Y-m-d h:i:s'),
+            'returntime' => date('Y-m-d h:i:s',strtotime('+30 day')),
+            'state'      => 1
+        );
+        $this->db->insert('borrow', $data);
+        $data = $this->getBookInfoById($bid);
+        $data['stock'] = $data['stock'] - 1;
+        $data['borrow'] = $data['borrow'] + 1;
+        $this->db->update('book', $data, array('bid' => $bid));
+        return 1;
+    }
+    
 }
