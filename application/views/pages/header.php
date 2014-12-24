@@ -17,7 +17,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">i-Library</a>
+				<a class="navbar-brand" href="<?=base_url()?>">i-Library</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -26,12 +26,6 @@
 					<li<?php echo ($page == 'serch')? " class='active'": "";?>><a href="<?=base_url()?>search">图书查询</a></li>
 					<li<?php echo ($page == '#')? " class='active'": "";?>><a href="#contact">Contact</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
 					<?php 
 					   if ($userName)
