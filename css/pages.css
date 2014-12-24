@@ -2,6 +2,9 @@ body {
 	min-width: 820px;
 }
 
+.minh {
+	min-height: 500px;
+}
 
 .center {
 	text-align:center;
@@ -70,3 +73,4 @@ body {
 	top: -20px;
 	left: 120px;
 }
+

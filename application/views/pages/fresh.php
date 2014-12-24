@@ -1,4 +1,4 @@
-<div class="container center">
+<div class="container center minh">
 <div class="book-container">
     <?php 
         if ($newBook)

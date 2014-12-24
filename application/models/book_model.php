@@ -106,4 +106,60 @@ class Book_model extends CI_Model {
         $query = $this->db->from('book')->order_by('bid', 'DESC')->limit($num)->get();
         return $query->result_array();
     }
+    
+    public function search($key)
+    {
+        $query = array();
+        $query = $this->search_base($key);
+        $arr = explode(' ', $key);
+        foreach ($arr as $item)
+        {
+            $temp = $this->search_base($item);
+            $query = array_merge($query, $temp);
+            $query = $this->unique($query);
+        }
+        return $query;
+    }
+    
+    private function search_base($key)
+    {
+        $query = $this->db->from('book')->where("name like '%". $key. "%' or author like '%". $key. "%' or press like '%". $key. "%'")->get();
+            
+        if ($query->num_rows)
+        {
+            return $query->result_array();
+        }
+        else
+        {
+            return array();
+        }
+    }
+    
+    private function unique($data = array())
+    {
+        $tmp = array();
+        foreach ($data as $key => $value)
+        {
+            foreach ($value as $key1 => $value1)
+            {
+                $value[$key1] = $key1 . '_|_' . $value1;
+            }
+            $tmp[$key] = implode(',|,', $value);
+        }
+        $tmp = array_unique($tmp);
+
+        $newArr = array();
+        foreach ($tmp as $k => $tmp_v)
+        {
+            $tmp_v2 = explode(',|,', $tmp_v);
+            foreach ($tmp_v2 as $k2 => $v2)
+            {
+                $v2 = explode('_|_', $v2);
+                $tmp_v3[$v2[0]] = $v2[1];
+            }
+            $newArr[$k] = $tmp_v3;
+        }
+        return $newArr;
+    }
+    
 }
