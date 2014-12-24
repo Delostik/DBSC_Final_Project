@@ -42,7 +42,7 @@ class Pages extends CI_Controller {
         $data['newBook'] = $this->book_model->getFreshBook(20);
         
         $this->load->view('pages/header', $data);
-        $this->load->view('pages/fresh');
+        $this->load->view('pages/fresh', $data);
         $this->load->view('pages/footer');
     }
     

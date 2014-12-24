@@ -17,5 +17,56 @@ body {
 	width: 390px;
 	height: 200px;
 	margin: 5px;
-	border: solid 1px #000;
+}
+
+.book-cover {
+	height: 180px;
+	width: 130px;
+	margin: 10px;
+	float: left;
+}
+
+.book-cover img {
+	height: 180px;
+	width: 130px;
+}
+
+.book-intro {
+	width: 220px;
+	height: 160px;
+	margin-right: 10px;
+	margin-top: 25px;
+	float: left;
+	text-align: left;
+}
+
+.book-title {
+	width: 210px;
+	height: 20px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	font-size: 18px;
+	font-weight: bold;
+	font-color: #000;
+}
+
+.book-intro hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.book-info-detail-line {
+	width: 210px;
+	height: 18px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	font-size: 11px;
+}
+
+.book-borrow {
+	position: relative;
+	top: -20px;
+	left: 120px;
 }
