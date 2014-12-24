@@ -170,6 +170,15 @@ class Book_model extends CI_Model {
 
     public function borrow($uid, $bid)
     {
+        $data = $this->getBookInfoById($bid);
+        if ($data['stock'] <= 0)
+        {
+            return 0;
+        }
+        $data['stock'] = $data['stock'] - 1;
+        $data['borrow'] = $data['borrow'] + 1;
+        $this->db->update('book', $data, array('bid' => $bid));
+        
         $serial = $this->db->from('borrow')->limit(1, 0)->order_by('serial', 'DESC')->get();
         if (!$serial) $serial = 1;
         else 
@@ -186,10 +195,7 @@ class Book_model extends CI_Model {
             'state'      => 1
         );
         $this->db->insert('borrow', $data);
-        $data = $this->getBookInfoById($bid);
-        $data['stock'] = $data['stock'] - 1;
-        $data['borrow'] = $data['borrow'] + 1;
-        $this->db->update('book', $data, array('bid' => $bid));
+       
         return 1;
     }
     
