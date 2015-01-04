@@ -199,4 +199,58 @@ class Book_model extends CI_Model {
         return 1;
     }
     
+    private function getBid()
+    {
+        $query = $this->db->from('book')->order_by('bid', 'DESC')->limit(1, 0)->get();
+        if ($query->num_rows)
+        {
+            $query = $query->result_array();
+            return $query[0]['bid'] + 1;
+        }        
+        else 
+        {
+            return 1;
+        }
+    }
+    
+    public function addBook($arr) 
+    {
+        $data = array(
+            'bid'       => $this->getBid(),
+            'cid'       => $arr['category'],
+            'name'      => $arr['name'],
+            'author'    => $arr['author'],
+            'press'     => $arr['press'],
+            'ISBN'      => $arr['ISBN'],
+            'price'     => $arr['price'],
+            'stock'     => $arr['stock'],
+            'borrow'    =>  0,
+            'pic'       => ''
+        );
+        $this->db->insert('book', $data);
+    }
+    
+    private function getCid()
+    {
+        $query = $this->db->from('category')->order_by('cid', 'DESC')->limit(1, 0)->get();
+        if ($query->num_rows)
+        {
+            $query = $query->result_array();
+            return $query[0]['cid'] + 1;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    
+    public function addCategory($name)
+    {
+        $data = array(
+            'cid'   => $this->getCid(),
+            'name'  => $name
+        );
+        $this->db->insert('category', $data);
+    }
+    
 }

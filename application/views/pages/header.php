@@ -23,7 +23,7 @@
 				<ul class="nav navbar-nav">
 					<li<?php echo ($page == 'index')? " class='active'": "";?>><a href="<?=base_url()?>">首页</a></li>
 					<li<?php echo ($page == 'fresh')? " class='active'": "";?>><a href="<?=base_url()?>fresh">新书上架</a></li>
-					<li<?php echo ($page == 'serch')? " class='active'": "";?>><a href="<?=base_url()?>search">图书查询</a></li>
+					<li<?php echo ($page == 'search')? " class='active'": "";?>><a href="<?=base_url()?>search">图书查询</a></li>
 					<li<?php echo ($page == '#')? " class='active'": "";?>><a href="#contact">Contact</a></li>
 				</ul>
                 <ul class="nav navbar-nav navbar-right">

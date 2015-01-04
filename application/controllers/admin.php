@@ -21,7 +21,7 @@ class Admin extends CI_Controller {
         );
         if (!$this->data['uid'] || $this->data['userType'] != 2)
         {
-            header('Location:./');
+            header('Location:'. base_url());
         }
     }
     
@@ -63,6 +63,26 @@ class Admin extends CI_Controller {
         $this->load->view('admin/header', $data);
         $this->load->view('admin/record_page');
         $this->load->view('admin/footer');
+    }
+    
+    public function do_addBook() 
+    {
+        $this->book_model->addBook($_POST);
+        header("Location:". base_url(). "admin/bookManage");
+    }
+    
+    public function do_addCategory()
+    {
+        $name = $this->input->post('name');
+        $this->book_model->addCategory($name);
+        header("Location:". base_url(). "admin/bookManage");
+    }
+    
+    public function do_addAdmin()
+    {
+        $uid = $this->input->post('uid');
+        $this->user_model->addAdmin($uid);
+        header("Location:". base_url(). "admin/userManage");
     }
     
 }

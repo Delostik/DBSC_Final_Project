@@ -97,4 +97,9 @@ class User_model extends CI_Model {
         }
     }
     
+    public function addAdmin($uid)
+    {
+        $this->db->set('userType', 2)->where('uid', $uid)->update('user');
+    }
+    
 }
