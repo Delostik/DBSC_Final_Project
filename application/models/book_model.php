@@ -7,6 +7,7 @@ class Book_model extends CI_Model {
         parent::__construct();
         $this->load->database();
         $this->load->model(array('user_model'));
+        date_default_timezone_set('PRC');
     }
 
     public function getCategoryList()
@@ -100,6 +101,53 @@ class Book_model extends CI_Model {
             return null;
         }
     }
+    
+    public function getRecordByUsername($username)
+    {
+        if (!$username) return null;
+        $uid = 0;
+        $query = $this->db->from('user')->where('userName', $username)->get();
+        if ($query->num_rows)
+        {
+            $uid = $query->result_array();
+            $uid = $uid[0]['uid'];
+        }
+        $this->db->flush_cache();
+        $query = $this->db->from('borrow')->where('uid', $uid)->where('state != 0')->get();
+        if ($query->num_rows)
+        {
+            $query = $query->result_array();
+            for ($i = 0; $i < count($query); $i++)
+            {
+                $bookInfo = $this->getBookInfoById($query[$i]['bid']);
+                $query[$i]['bookName'] = $bookInfo['name'];
+            }
+            return $query;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    public function getRecordByUidAll($uid)
+    {
+        $query = $this->db->from('borrow')->where('uid', $uid)->get();
+        if ($query->num_rows)
+        {
+            $query = $query->result_array();
+            for ($i = 0; $i < count($query); $i++)
+            {
+            $bookInfo = $this->getBookInfoById($query[$i]['bid']);
+            $query[$i]['bookName'] = $bookInfo['name'];
+            }
+                return $query;
+        }
+        else
+        {
+        return null;
+        }
+        }
     
     public function getFreshBook($num)
     {
@@ -251,6 +299,42 @@ class Book_model extends CI_Model {
             'name'  => $name
         );
         $this->db->insert('category', $data);
+    }
+    
+    public function addCover($bid)
+    {
+        $this->db->set('pic', $bid. ".jpg")->where('bid', $bid)->update('book');
+    }
+    
+    public function updateInfo($arr)
+    {
+        $data = array(
+            "bid"   => $arr['bid'],
+            "cid"   => $arr['cid'],
+            "name"   => $arr['name'],
+            "author"   => $arr['author'],
+            "press"   => $arr['press'],
+            "ISBN"   => $arr['ISBN'],
+            "price"   => $arr['price'],
+            "stock"   => $arr['stock'],
+            "borrow"   => $arr['borrow'],
+            "pic"   => $arr['pic']
+        );
+        $this->db->update('book', $data, array('bid' => $arr['bid']));
+    }
+    
+    public function returnBook($serial)
+    {
+        $this->db->set('state', 0)->where('serial', $serial)->update('borrow');
+        $this->db->flush_cache();
+        $bid = $this->db->from('borrow')->where('serial', $serial)->get()->result_array();
+        $bid = $bid[0]['bid'];
+        $this->db->flush_cache();
+        $stock = $this->db->from('book')->where('bid', $bid)->get()->result_array();
+        $stock = $stock[0]['stock'];
+        echo $bid, $stock;
+        $this->db->flush_cache();
+        $this->db->set('stock', $stock+1)->where('bid', $bid)->update('book');
     }
     
 }

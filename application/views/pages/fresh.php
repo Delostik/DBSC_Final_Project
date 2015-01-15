@@ -6,9 +6,10 @@
             foreach ($newBook as $row)
             {
                 echo    "<div class='book-grid'>
-                            <div class='book-cover'>
-                                <img src='". base_url(). "cover/". $row['pic']. "'/>
-                            </div>
+                            <div class='book-cover'>";
+                if ($row['pic']) echo "<img src='". base_url(). "cover/". $row['pic']. "'/>";
+                else             echo "<img src='". base_url(). "cover/0.jpg'/>";
+                echo       "</div>
                             <div class='book-intro'>
                                 <div class='book-title'>". $row['name']. "</div>
                                 <hr />

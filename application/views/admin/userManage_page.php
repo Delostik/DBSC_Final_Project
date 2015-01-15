@@ -77,9 +77,6 @@
             <div class="list-group">
                 <li class='list-group-item active' id="btn_addAdmin">添加管理员</li>
             </div>
-            <div class="list-group">
-                <a class='list-group-item active' href='<?=base_url()?>admin/addUser'>添加新用户</a>
-            </div>
         </div>
     </div>
 </div>

@@ -1,19 +1,28 @@
 <script>
-    function initField() {
-
+    function upload() {
+        $("#coverForm").submit();
     }
     
     $(document).ready(function() {
         $("#btn_addBook").css('cursor', 'pointer');
         $("#btn_addCategory").css('cursor', 'pointer');
-        $("#btn_addBook").click(function() {
+        $("#btn_addBook").click(function(event) {
             $("#addBookPanel").toggle(200);
+            $("#addCover").hide(200);
             $("#addCategoryPanel").hide(200);
             event.stopPropagation();
         });
-        $("#btn_addCategory").click(function() {
+        $("#btn_addCategory").click(function(event) {
             $("#addCategoryPanel").toggle(200);
+            $("#addCoverPanel").hide(200);
             $("#addBookPanel").hide(200);
+            event.stopPropagation();
+        });
+        $(".btn_addCover").click(function(event) {
+            $("#addCoverPanel").toggle(200);
+        	$("#addCategoryPanel").hide(200);
+            $("#addBookPanel").hide(200);
+            $("#bid").val($(this).attr('bid'));
             event.stopPropagation();
         });
         $("#addBookPanel").click(function(event) {
@@ -22,10 +31,15 @@
         $("#addCategoryPanel").click(function(event) {
             event.stopPropagation();
         });
+        $("#addCoverPanel").click(function(event) {
+            event.stopPropagation();
+        });
         $("body").click(function() {
         	$("#addBookPanel").hide(200);
         	$("#addCategoryPanel").hide(200);
+        	$("#addCoverPanel").hide(200);
         });
+
     });
 </script>
 <div class="container minh">
@@ -40,10 +54,11 @@
                         <tr>
                             <th width=50px>#</th>
                             <th width=350px>书名</th>
-                            <th width=80px>单价</th>
-                            <th width=70px>库存</th>
+                            <th width=60px>单价</th>
+                            <th width=50px>库存</th>
                             <th width=80px>借阅次数</th>
                             <th>借阅记录</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -59,6 +74,7 @@
                                           <td>". $row['stock']. "</td>
                                           <td>". $row['borrow']. "</td>
                                           <td><a href='". base_url(). "admin/record/". $row['bid']. "'><button type='button' class='btn btn-default btn-xs'>　查看　</button></a></td>
+                                          <td><a href='#'><button type='button' class='btn btn-default btn-xs btn_addCover' bid='".$row['bid']."'>添加封面</button></a></td>
                                           <td><a href='". base_url(). "admin/modify/". $row['bid']. "'><button type='button' class='btn btn-default btn-xs'>修改信息</button></a></td>
                                       </tr>";
                                 
@@ -139,9 +155,19 @@
         <button class="btn btn-primary" style="margin: 0;">添加</button>
     </form>
 </div>
+ 
 <div id="addCategoryPanel">
     　<form action="<?=base_url()?>admin/do_addCategory" method="post">
         <input type="text" class="form-control" name="name">
         <button class="btn btn-primary" style="margin: 0;">　添加　</button>
     </form>
 </div>
+ 
+<div id="addCoverPanel">
+    <form action="<?=base_url()?>admin/do_addCover" method="post" accept-charset="utf-8" enctype="multipart/form-data" id="coverForm">
+        <input type="text" name="bid" id="bid" style="display:none"/>
+        <button type="button" class="btn btn-primary">添加封面</button>
+        <input type="file" name="userfile" size="20" style="opacity:0;position:relative;width:91px;height:34px;top:-34px;" onchange="javascript:upload();"/>
+    </form>
+</div>
+ 

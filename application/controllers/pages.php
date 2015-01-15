@@ -27,9 +27,10 @@ class Pages extends CI_Controller {
     
     public function index()
     {
-        $this->data['page'] = 'index';
-        
-    	$this->load->view('pages/header', $this->data);
+        $data = $this->data;
+        $data['page'] = 'index';
+        $data['newBook'] = $this->book_model->getFreshBook(6);
+    	$this->load->view('pages/header', $data);
     	$this->load->view('pages/index');
     	$this->load->view('pages/footer');
     }
@@ -94,9 +95,11 @@ class Pages extends CI_Controller {
         foreach ($data as $row)
         {
             $html .= "<div class='book-grid'>
-                        <div class='book-cover'>
-                            <img src='". base_url(). "cover/". $row['pic']. "'/>
-                        </div>
+                        <div class='book-cover'>";
+            if ($row['pic']) $html .= "<img src='". base_url(). "cover/". $row['pic']. "'/>";
+            else             $html .= "<img src='". base_url(). "cover/0.jpg'/>";
+            
+            $html .=   "</div>
                         <div class='book-intro'>
                             <div class='book-title'>". $row['name']. "</div>
                             <hr />
@@ -130,14 +133,16 @@ class Pages extends CI_Controller {
     
     public function searchapi()
     {
+        $keyword = $this->input->get('key');
         $data = $this->book_model->search($keyword);
         $html = '';
         foreach ($data as $row)
         {
             echo    "<div class='book-grid'>
-                        <div class='book-cover'>
-                            <img src='". base_url(). "cover/". $row['pic']. "'/>
-                        </div>
+                        <div class='book-cover'>";
+            if ($row['pic']) echo "<img src='". base_url(). "cover/". $row['pic']. "'/>";
+            else             echo "<img src='". base_url(). "cover/0.jpg'/>";
+            echo       "</div>
                         <div class='book-intro'>
                             <div class='book-title'>". $row['name']. "</div>
                             <hr />

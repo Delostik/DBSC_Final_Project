@@ -38,7 +38,7 @@
                                         <ul class='dropdown-menu' role='menu'>
 									       <li class='dropdown-header'>用户控制</li>
 									       <li><a href='#'>个人信息</a></li>
-									       <li><a href='#'>借阅记录</a></li>
+									       <li><a href='". base_url(). "admin/record_user'>借阅记录</a></li>
 									       <li><a href='#'>账户安全</a></li>
 									       <li class='divider'></li>
 									       <li><a href='". base_url(). "user/do_logout'>安全退出</a></li>
